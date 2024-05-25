@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NudroCoin App</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #ffc107;
+            width: 375px;
+            border-radius: 10px;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .title {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .menu-btn {
+            background: none;
+            border: none;
+            font-size: 20px;
+        }
+
+        .join-squad-btn {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+
+        .content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .coin-display {
+            margin-bottom: 20px;
+        }
+
+        .coin-display img {
+            width: 100px;
+            cursor: pointer;
+        }
+
+        .coin-value {
+            font-size: 32px;
+            font-weight: bold;
+            display: block;
+            margin: 10px 0;
+        }
+
+        .coin-tier {
+            font-size: 18px;
+            color: #666;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .energy {
+            font-size: 16px;
+        }
+
+        .menu {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+        }
+
+        .menu-item {
+            background: none;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <span class="title">NudroCoin</span>
+        </div>
+        <div class="content">
+            <div class="coin-display">
+                <img src="assets/images/coin.png" alt="Coin" id="coin">
+                <span class="coin-value" id="coinValue">0</span>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('coin').addEventListener('click', function() {
+            let coinValue = document.getElementById('coinValue');
+            let currentValue = parseInt(coinValue.innerText.replace(/,/g, ''));
+            currentValue += 1;
+            coinValue.innerText = currentValue.toLocaleString();
+        });
+    </script>
+</body>
+</html>
