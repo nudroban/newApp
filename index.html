@@ -21,6 +21,7 @@
             border-radius: 10px;
             text-align: center;
             padding: 20px;
+            box-sizing: border-box;
         }
 
         .header {
@@ -56,10 +57,12 @@
             background-color: #fff;
             padding: 20px;
             border-radius: 10px;
+            box-sizing: border-box;
         }
 
         .coin-display {
             margin-bottom: 20px;
+            position: relative;
         }
 
         .coin-display img {
@@ -109,18 +112,40 @@
         </div>
         <div class="content">
             <div class="coin-display">
-                <img src="assets/images/coin.png" alt="Coin" id="coin">
+                <%= image_tag 'coin.png', alt: 'Coin', id: 'coin' %>
                 <span class="coin-value" id="coinValue">0</span>
             </div>
+            <p id="message" style="display:none; font-size: 18px; color: red;">Боже!!! Яке кончене! Це просто развод!</p>
         </div>
     </div>
     <script>
+        let clickCount = 0;
+
         document.getElementById('coin').addEventListener('click', function() {
             let coinValue = document.getElementById('coinValue');
+            let message = document.getElementById('message');
             let currentValue = parseInt(coinValue.innerText.replace(/,/g, ''));
-            currentValue += 1;
-            coinValue.innerText = currentValue.toLocaleString();
+            
+            clickCount += 1;
+
+            if (clickCount >= 20) {
+                message.style.display = 'block';
+            } else {
+                currentValue += 1;
+                coinValue.innerText = currentValue.toLocaleString();
+            }
         });
+
+        // Prevent double-tap zoom on mobile
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function(event) {
+            let now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
     </script>
 </body>
 </html>
+
