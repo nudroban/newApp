@@ -12,7 +12,9 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            width: 100vw;
             height: 100vh;
+            overflow: hidden; /* Prevent scrolling */
         }
 
         .container {
@@ -65,8 +67,12 @@
             position: relative;
         }
 
-        .coin-display img {
+        .coin-button {
             width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-size: cover;
+            border: none;
             cursor: pointer;
         }
 
@@ -112,18 +118,27 @@
         </div>
         <div class="content">
             <div class="coin-display">
-                <img src="assets/images/coin.png" alt="Coin" id="coin">
+                <button class="coin-button" id="coin"></button>
                 <span class="coin-value" id="coinValue">0</span>
             </div>
-            <p id="message" style="display:none; font-size: 18px; color: red;">Боже!!! Яке кончене! Це просто развод!</p>
+            <p id="message" style="display:none; font-size: 18px; color: red;">You have clicked 20 times!</p>
         </div>
     </div>
     <script>
-        let clickCount = 0;
+        const images = [
+            'assets/images/coin1.png',
+            'assets/images/coin2.png',
+            'assets/images/coin3.png'
+        ];
 
-        document.getElementById('coin').addEventListener('click', function() {
-            let coinValue = document.getElementById('coinValue');
-            let message = document.getElementById('message');
+        let clickCount = 0;
+        const coinButton = document.getElementById('coin');
+        const coinValue = document.getElementById('coinValue');
+        const message = document.getElementById('message');
+
+        coinButton.style.backgroundImage = `url(${images[0]})`;
+
+        coinButton.addEventListener('click', function() {
             let currentValue = parseInt(coinValue.innerText.replace(/,/g, ''));
             
             clickCount += 1;
@@ -133,6 +148,9 @@
             } else {
                 currentValue += 1;
                 coinValue.innerText = currentValue.toLocaleString();
+
+                const imageIndex = Math.floor(clickCount / 5) % images.length;
+                coinButton.style.backgroundImage = `url(${images[imageIndex]})`;
             }
         });
 
@@ -148,4 +166,3 @@
     </script>
 </body>
 </html>
-
