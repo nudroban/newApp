@@ -74,6 +74,11 @@
             background-size: cover;
             border: none;
             cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .coin-button:active {
+            transform: scale(0.9);
         }
 
         .coin-value {
@@ -121,7 +126,7 @@
                 <button class="coin-button" id="coin"></button>
                 <span class="coin-value" id="coinValue">0</span>
             </div>
-            <p id="message" style="display:none; font-size: 18px; color: red;">You have clicked 20 times!</p>
+            <p id="message" style="display:none; font-size: 18px; color: red;">Боже! Яке Кончене!</p>
         </div>
     </div>
     <script>
@@ -166,3 +171,4 @@
     </script>
 </body>
 </html>
+
