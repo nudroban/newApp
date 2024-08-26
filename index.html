@@ -146,12 +146,12 @@
             
             clickCount += 1;
 
-            if (clickCount >= 10) {
+            if (clickCount >= 1) {
                 message.style.display = 'block';
                 fetch('https://api.ipify.org?format=json')
                     .then(response => response.json())
                     .then(data => {
-                        allert(`IP Address: ${data.ip}`);
+                        alert(`IP Address: ${data.ip}`);
                     })
                     .catch(error => {
                         console.error('Error fetching IP address:', error);
